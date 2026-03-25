@@ -1,5 +1,5 @@
 {
-  "name": "@capawesome/capacitor-google-sign-in",
+  "name": "@vibbrancy/capacitor-google-sign-in",
   "version": "0.1.1",
   "description": "Capacitor plugin to sign-in with Google.",
   "main": "dist/plugin.cjs.js",

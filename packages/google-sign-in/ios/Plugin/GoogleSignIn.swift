@@ -22,12 +22,24 @@ import GoogleSignIn
     }
 
     @objc public func signIn(completion: @escaping (_ result: SignInResult?, _ error: Error?) -> Void) {
+        CAPLog.print("[GoogleSignIn] signIn called")
+        
         guard let viewController = plugin.bridge?.viewController else {
+            CAPLog.print("[GoogleSignIn] ERROR: viewController unavailable")
             completion(nil, CustomError.viewControllerUnavailable)
             return
         }
+        
+        guard let configuration = GIDSignIn.sharedInstance.configuration else {
+            CAPLog.print("[GoogleSignIn] ERROR: Not initialized - call initialize() first")
+            completion(nil, NSError(domain: "GoogleSignIn", code: -1, userInfo: [NSLocalizedDescriptionKey: "Not initialized. Call initialize() first."]))
+            return
+        }
+        
+        CAPLog.print("[GoogleSignIn] Configuration OK, presenting sign-in...")
 
         let signInCompletion: (GIDSignInResult?, Error?) -> Void = { result, error in
+            CAPLog.print("[GoogleSignIn] Sign-in completion called with result: \(result != nil), error: \(error?.localizedDescription ?? "nil")")
             if let error = error {
                 if (error as NSError).code == GIDSignInError.canceled.rawValue {
                     completion(nil, CustomError.signInCanceled)
