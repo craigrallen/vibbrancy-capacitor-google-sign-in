@@ -2,11 +2,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "CapawesomeCapacitorGoogleSignIn",
+    name: "VibbrancyCapacitorGoogleSignIn",
     platforms: [.iOS(.v15)],
     products: [
         .library(
-            name: "CapawesomeCapacitorGoogleSignIn",
+            name: "VibbrancyCapacitorGoogleSignIn",
             targets: ["GoogleSignInPlugin"])
     ],
     dependencies: [
